@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Quantum</title>
+    </head>
+    <body>
+        <div>
+            <div id="usernameDiv" style="float: left;">
+                <b>Username: </b>
+                <input id="username"/>
+                <button id="userCreate" onclick="createUser()">Create User</button>
+            </div>
+            <div style="float: right;">
+                <b>Join / Create Room: </b>
+                <input id="roomName"/>
+                <button id="joinCreateRoom" onclick="joinCreateRoom()" disabled=true>Go!</button>
+            </div>
+        </div>
+        <br>
+        <div>
+            <hr>
+            <input type="text" id="newMessage" style="width: 90%;">
+            <button id="sendMessage" onclick="sendMessage()" style="width: 9%;">Send</button>
+        </div>
+        <div>
+            <h4 id="chatHeader">Chat -- Lobby</h4>
+            <ul id="messages"></ul>
+        </div>
+        <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+        <script>
+            var socket = io();
+
+            /************************ Outbound Events ************************/
+            function createUser(){
+                const uName = $('#username').val();
+                socket.emit('adduser', uName);
+                //$('#username').val('');
+                $('#usernameDiv').html('<b>Username:</b> ' + uName);
+                document.getElementById("joinCreateRoom").disabled = false;
+            }
+
+            function joinCreateRoom(){
+                socket.emit('createJoinRoom', $('#roomName').val());
+                $('#roomName').val('');
+            }
+
+            function sendMessage(){
+                socket.emit('updateChat', $('#newMessage').val());
+                $('#newMessage').val('');
+            }
+
+            /************************ Inbound Events ************************/
+            socket.on('roomChange', function(roomName, msgs){
+                console.log('In Room Change');
+                $('#chatHeader').text('Chat -- ' + roomName);
+                $('#messages').html('');
+                console.log(msgs);
+                for(key in msgs){
+                    $('#messages').append('<li><b>' + msgs[key]['username'] + '</b>: ' + msgs[key]['msg'] + '</li>');
+                }
+                window.scrollTo(0, document.body.scrollHeight);
+            });
+
+            socket.on('updateMessages', function(msg){
+                console.log('updating messages');
+                $('#messages').append('<li><b>' + msg['username'] + '</b>: ' + msg['msg'] + '</li>');
+                window.scrollTo(0, document.body.scrollHeight);
+            });
+        </script>
+    </body>
+</html>
