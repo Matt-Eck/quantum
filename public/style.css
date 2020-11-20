@@ -1,11 +1,18 @@
-html, body {
+html, body, .fullThing {
     height: 100%;
+    width: 100%;
+}
+.header{
+    height: 5%;
+    border-bottom: 1px solid black;
 }
 
-.usernameDiv{
-    float: left;
+.roomStuff{
+    height: 95%;
 }
-
-.roomDiv{
-    float: right;
+.chat{
+    margin-top: 10px;
+    border-top: 5px;
+    height: 95%;
+    border: 1px solid black;
 }

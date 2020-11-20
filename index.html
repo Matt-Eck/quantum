@@ -2,30 +2,40 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <title>Quantum</title>
     </head>
     <body>
-        <div>
-            <div id="usernameDiv" class="usernameDiv">
-                <b>Username: </b>
-                <input id="username"/>
-                <button id="userCreate" onclick="createUser()">Create User</button>
+        <div class="container-fluid fullThing">
+            <div class="row header">
+                <div class="col align-self-center" id="usernameDiv">
+                    <b>Username: </b>
+                    <input id="username"/>
+                    <button id="userCreate" onclick="createUser()">Create User</button>
+                </div>
+                <div class="col align-self-center">
+                    <div class="float-right">
+                        <b>Join / Create Room: </b>
+                        <input id="roomName"/>
+                        <button id="joinCreateRoom" onclick="joinCreateRoom()" disabled=true>Go!</button>
+                    </div>
+                </div>
             </div>
-            <div class="roomDiv">
-                <b>Join / Create Room: </b>
-                <input id="roomName"/>
-                <button id="joinCreateRoom" onclick="joinCreateRoom()" disabled=true>Go!</button>
+            <div class="row roomStuff">
+                <div class="col-md-9">
+                    <div class="gameBoard">
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="chat overflow-auto">
+                        <h4 id="chatHeader">Chat -- Lobby</h4>
+                        <input type="text" id="newMessage" style="width: 80%;">
+                        <button id="sendMessage" onclick="sendMessage()" style="width: 10%;" disabled=true>Send</button>
+                        <ul id="messages"></ul>
+                    </div>
+                </div>
             </div>
-        </div>
-        <br>
-        <div>
-            <hr>
-            <input type="text" id="newMessage" style="width: 90%;">
-            <button id="sendMessage" onclick="sendMessage()" style="width: 9%;" disabled=true>Send</button>
-        </div>
-        <div>
-            <h4 id="chatHeader">Chat -- Lobby</h4>
-            <ul id="messages"></ul>
         </div>
         <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
         <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
