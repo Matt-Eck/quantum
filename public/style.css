@@ -1,0 +1,11 @@
+html, body {
+    height: 100%;
+}
+
+.usernameDiv{
+    float: left;
+}
+
+.roomDiv{
+    float: right;
+}

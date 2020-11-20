@@ -1,16 +1,17 @@
 <!doctype html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
         <title>Quantum</title>
     </head>
     <body>
         <div>
-            <div id="usernameDiv" style="float: left;">
+            <div id="usernameDiv" class="usernameDiv">
                 <b>Username: </b>
                 <input id="username"/>
                 <button id="userCreate" onclick="createUser()">Create User</button>
             </div>
-            <div style="float: right;">
+            <div class="roomDiv">
                 <b>Join / Create Room: </b>
                 <input id="roomName"/>
                 <button id="joinCreateRoom" onclick="joinCreateRoom()" disabled=true>Go!</button>

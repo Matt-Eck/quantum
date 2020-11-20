@@ -1,11 +1,14 @@
+var express = require('express');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
+var path = require('path')
 
 var usernames = {};
 //var rooms = ['Lobby'];
 var roomsWithLog = {'Lobby':[]}
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
     console.log('redirecting');
