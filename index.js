@@ -40,14 +40,6 @@ io.on("connection", function(socket){
         roomsWithLog[socket.room].push({username, msg});
         io.in(socket.room).emit('updateMessages', {username, msg});
     });
-
-
-    /*socket.on('disconnect', function() {
-        delete usernames[socket.username];
-        io.sockets.emit('updateusers', usernames);
-        socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
-        socket.leave(socket.room);
-    });*/
 });
   
 http.listen(port, function(){

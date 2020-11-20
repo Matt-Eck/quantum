@@ -20,7 +20,7 @@
         <div>
             <hr>
             <input type="text" id="newMessage" style="width: 90%;">
-            <button id="sendMessage" onclick="sendMessage()" style="width: 9%;">Send</button>
+            <button id="sendMessage" onclick="sendMessage()" style="width: 9%;" disabled=true>Send</button>
         </div>
         <div>
             <h4 id="chatHeader">Chat -- Lobby</h4>
@@ -38,6 +38,7 @@
                 //$('#username').val('');
                 $('#usernameDiv').html('<b>Username:</b> ' + uName);
                 document.getElementById("joinCreateRoom").disabled = false;
+                document.getElementById("sendMessage").disabled = false;
             }
 
             function joinCreateRoom(){
