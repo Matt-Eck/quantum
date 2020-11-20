@@ -32,7 +32,7 @@ io.on("connection", function(socket){
         socket.leave(socket.room);
         socket.join(newRoom);
         socket.room = newRoom;
-        io.emit('roomChange', newRoom, roomsWithLog[newRoom]);
+        io.in(socket.room).emit('roomChange', newRoom, roomsWithLog[newRoom]);
     });
 
     socket.on('updateChat', function(msg){
